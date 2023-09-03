@@ -1,10 +1,17 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
 public class Calculator {
+    public static String s;
+    private static int mod=0;
+    private static double ans=0;
+    private static boolean sch=true;
 
     public static void main(String[] args) {
+
 
 
         Color c1 = new Color(245, 157, 127);
@@ -16,21 +23,19 @@ public class Calculator {
         Font f3 = new Font(null, Font.BOLD, 20);
 
         JFrame frame = new JFrame( "...CALCULATOR...");
-        frame.setSize(210, 380);
+        frame.setSize(210, 400);
         frame.getContentPane().setBackground(c2);
         frame.getColorModel();
+        frame.setLayout(null);
 
-        JLabel l1 = new JLabel("History");
-        l1.setBounds(210, 113, 190, 20);
-        l1.setForeground(c1);
-        l1.setFont(f2);
+
         JTextField tf = new JTextField();
-        tf.setBounds(0, 0, 410, 100);
+        tf.setBounds(0, 0, 200, 100);
         tf.setBackground(Color.darkGray);
         tf.setForeground(c3);
         tf.setFont(f1);
         tf.setBorder(null);
-        tf.setText(0 + "");
+        tf.setText(0+"");
 
 
 
@@ -79,6 +84,8 @@ public class Calculator {
 
 
         frame.add(badd);
+        frame.add(baddsub);
+        frame.add(bsub);
         frame.add(bdot);
         frame.add(bper);
         frame.add(bdiv);
@@ -97,9 +104,207 @@ public class Calculator {
         frame.add(b7);
         frame.add(b8);
         frame.add(b9);
-        frame.add(l1);
         frame.add(tf);
 
+        b1.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (sch){
+                    tf.setText("");
+                    sch=false;
+                }
+                s=tf.getText();
+                tf.setText(s +"1");
+
+            }
+        });
+        b2.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (sch){
+                    tf.setText("");
+                    sch=false;
+                }
+                s=tf.getText();
+                tf.setText(s +"2");
+
+            }
+        });
+        b3.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (sch){
+                    tf.setText("");
+                    sch=false;
+                }
+                s=tf.getText();
+                tf.setText(s +"3");
+
+            }
+        });
+        b4.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (sch){
+                    tf.setText("");
+                    sch=false;
+                }
+                s=tf.getText();
+                tf.setText(s +"4");
+
+            }
+        });
+        b5.addActionListener(new ActionListener() {
+
+
+            public void actionPerformed(ActionEvent e) {
+                if (sch){
+                    tf.setText("");
+                    sch=false;
+                }
+                s=tf.getText();
+                tf.setText(s +"5");
+
+            }
+        });
+        b6.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (sch){
+                    tf.setText("");
+                    sch=false;
+                }
+                s=tf.getText();
+                tf.setText(s +"6");
+
+            }
+        });
+        b7.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (sch){
+                    tf.setText("");
+                    sch=false;
+                }
+                s=tf.getText();
+                tf.setText(s +"7");
+
+            }
+        });
+        b8.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (sch){
+                    tf.setText("");
+                    sch=false;
+                }
+                s=tf.getText();
+                tf.setText(s +"8");
+
+            }
+        });
+        b9.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (sch){
+                    tf.setText("");
+                    sch=false;
+                }
+                s=tf.getText();
+                tf.setText(s +"9");
+
+            }
+        });
+        b0.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (sch){
+                    tf.setText("");
+                    sch=false;
+                }
+                s=tf.getText();
+                tf.setText(s +"0");
+
+            }
+        });
+        badd.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e)
+            {
+                s=tf.getText();
+                Modifier(s,mod);
+                tf.setText(ans+"");
+                mod=1;
+            }
+        });
+        bsub.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e)
+            {
+                s=tf.getText();
+                Modifier(s,mod);
+                tf.setText(ans+"");
+                mod=2;
+            }
+        });
+        bmulti.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e)
+            {
+                s=tf.getText();
+                Modifier(s,mod);
+                tf.setText(ans+"");
+                mod=3;
+            }
+        });
+        bdiv.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e)
+            {
+                s=tf.getText();
+                Modifier(s,mod);
+                tf.setText(ans+"");
+                mod=4;
+            }
+        });
+        bequ.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                s=tf.getText();
+                Modifier(s,mod);
+                tf.setText(ans+"");
+                mod=0;
+
+            }
+        });
+bclear.addActionListener(new ActionListener() {
+
+    public void actionPerformed(ActionEvent e) {
+
+    }
+});
+bdot.addActionListener(new ActionListener() {
+
+    public void actionPerformed(ActionEvent e) {
+        if (sch){
+            tf.setText("");
+            sch=false;
+        }
+        s=tf.getText();
+        tf.setText(s +".");
+
+
+    }
+});
+bclear.addActionListener(new ActionListener() {
+
+    public void actionPerformed(ActionEvent e) {
+    tf.setText("");
+    ans=0;
+    mod=0;
+    sch=true;
+    }
+});
 
 
 
@@ -124,6 +329,33 @@ public class Calculator {
 
 
         frame.setVisible(true);
+
+    }
+    public static void Modifier(String s, int mod){
+        double a= Double.parseDouble(s);
+
+        if(mod==1)
+        {
+            ans+=a;
+
+        }
+        else if (mod==2)
+        {
+        ans-=a;
+
+        }
+        else if (mod==3)
+        {
+            ans*=a;
+        }
+        else if (mod==4)
+        {
+           ans/=a;
+        } else if (mod==0) {
+            ans=a;
+
+        }
+        sch=true;
 
     }
 
