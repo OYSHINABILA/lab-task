@@ -1,3 +1,5 @@
+import sun.awt.windows.WFontConfiguration;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,20 +23,22 @@ public class Calculator {
         Font f1 = new Font(null, 0, 32);
         Font f2 = new Font(null, 0, 20);
         Font f3 = new Font(null, Font.BOLD, 20);
+        Font f4 = new Font(null, Font.BOLD, 8);
 
-        JFrame frame = new JFrame( "...CALCULATOR...");
-        frame.setSize(210, 400);
+
+        JFrame frame = new JFrame( "CALCULATOR");
+        frame.setSize(275, 465);
         frame.getContentPane().setBackground(c2);
         frame.getColorModel();
         frame.setLayout(null);
 
 
         JTextField tf = new JTextField();
-        tf.setBounds(0, 0, 200, 100);
+        tf.setBounds(0, 0, 260, 100);
         tf.setBackground(Color.darkGray);
         tf.setForeground(c3);
         tf.setFont(f1);
-        tf.setBorder(null);
+        tf.setBorder(BorderFactory.createLineBorder(Color.white, 5));
         tf.setText(0+"");
 
 
@@ -61,26 +65,70 @@ public class Calculator {
         JButton bans=new JButton("Ans");
         JButton bdot=new JButton(".");
 
-        bclear.setBounds(0,100,50,50);
-        baddsub.setBounds(50,100,50,50);
-        bper.setBounds(100,100,50,50);
-        bdiv.setBounds(150,100,50,50);
-        b7.setBounds(0,150,50,50);
-        b8.setBounds(50,150,50,50);
-        b9.setBounds(100,150,50,50);
-        bmulti.setBounds(150,150,50,50);
-        b4.setBounds(0,200,50,50);
-        b5.setBounds(50,200,50,50);
-        b6.setBounds(100,200,50,50);
-        bsub.setBounds(150,200,50,50);
-        b1.setBounds(0,250,50,50);
-        b2.setBounds(50,250,50,50);
-        b3.setBounds(100,250,50,50);
-        badd.setBounds(150,250,50,50);
-        b0.setBounds(0,300,50,50);
-        bdot.setBounds(50,300,50,50);
-        bans.setBounds(100,300,50,50);
-        bequ.setBounds(150,300,50,50);
+        b1.setFont(f2);
+        b2.setFont(f2);
+        b3.setFont(f2);
+        b4.setFont(f2);
+        b5.setFont(f2);
+        b6.setFont(f2);
+        b7.setFont(f2);
+        b8.setFont(f2);
+        b9.setFont(f2);
+        b0.setFont(f2);
+        bans.setFont(f4);
+
+        b1.setForeground(Color.BLACK);
+        b2.setForeground(Color.BLACK);
+        b3.setForeground(Color.BLACK);
+        b4.setForeground(Color.BLACK);
+
+
+
+
+        bclear.setBounds(0,100,65,65);
+        baddsub.setBounds(65,100,65,65);
+        bper.setBounds(130,100,65,65);
+        bdiv.setBounds(195,100,65,65);
+        b7.setBounds(0,165,65,65);
+        b8.setBounds(65,165,65,65);
+        b9.setBounds(130,165,65,65);
+        bmulti.setBounds(195,165,65,65);
+        b4.setBounds(0,230,65,65);
+        b5.setBounds(65,230,65,65);
+        b6.setBounds(130,230,65,65);
+        bsub.setBounds(195,230,65,65);
+        b1.setBounds(0,295,65,65);
+        b2.setBounds(65,295,65,65);
+        b3.setBounds(130,295,65,65);
+        badd.setBounds(195,295,65,65);
+        b0.setBounds(0,360,65,65);
+        bdot.setBounds(65,360,65,65);
+        bans.setBounds(130,360,65,65);
+        bequ.setBounds(195,360,65,65);
+
+        badd.setBackground(c1);
+        b1.setBackground(c3);
+        bsub.setBackground(c1);
+        b2.setBackground(c3);
+        bmulti.setBackground(c1);
+        b3.setBackground(c3);
+        baddsub.setBackground(c1);
+        b4.setBackground(c3);
+        b5.setBackground(c3);
+        b6.setBackground(c3);
+        b7.setBackground(c3);
+        b8.setBackground(c3);
+        b9.setBackground(c3);
+        b0.setBackground(c3);
+        bdiv.setBackground(c1);
+        bclear.setBackground(c1);
+        bper.setBackground(c1);
+        bequ.setBackground(c1);
+        bdot.setBackground(c3);
+        bans.setBackground(c3);
+
+
+
 
 
         frame.add(badd);
@@ -277,34 +325,34 @@ public class Calculator {
 
             }
         });
-bclear.addActionListener(new ActionListener() {
+        bclear.addActionListener(new ActionListener() {
 
-    public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {
 
-    }
-});
-bdot.addActionListener(new ActionListener() {
+            }
+        });
+        bdot.addActionListener(new ActionListener() {
 
-    public void actionPerformed(ActionEvent e) {
-        if (sch){
-            tf.setText("");
-            sch=false;
-        }
-        s=tf.getText();
-        tf.setText(s +".");
+            public void actionPerformed(ActionEvent e) {
+                if (sch){
+                    tf.setText("");
+                    sch=false;
+                }
+                s=tf.getText();
+                tf.setText(s +".");
 
 
-    }
-});
-bclear.addActionListener(new ActionListener() {
+            }
+        });
+        bclear.addActionListener(new ActionListener() {
 
-    public void actionPerformed(ActionEvent e) {
-    tf.setText("");
-    ans=0;
-    mod=0;
-    sch=true;
-    }
-});
+            public void actionPerformed(ActionEvent e) {
+                tf.setText("");
+                ans=0;
+                mod=0;
+                sch=true;
+            }
+        });
 
 
 
@@ -341,7 +389,7 @@ bclear.addActionListener(new ActionListener() {
         }
         else if (mod==2)
         {
-        ans-=a;
+            ans-=a;
 
         }
         else if (mod==3)
@@ -350,7 +398,7 @@ bclear.addActionListener(new ActionListener() {
         }
         else if (mod==4)
         {
-           ans/=a;
+            ans/=a;
         } else if (mod==0) {
             ans=a;
 
