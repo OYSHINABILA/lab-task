@@ -10,6 +10,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 public class CourseRegistration extends JFrame{
+    public static   double cc=0;
 
     private LinkedList<Course> courseList = new LinkedList<Course>();
     private HashMap<String, Course> courseMap = new HashMap<String, Course>();
@@ -21,6 +22,8 @@ public class CourseRegistration extends JFrame{
         courseMap.put("CSE173", new Course("CSE173", "Discrete Mathmatics",1,3.0 ));
         courseMap.put("CSE215", new Course("CSE215", "Programming in Java",1,3.0));
         courseMap.put("CSE215L", new Course("CSE215L", "Programming in Java",1,3.0));
+        courseMap.put("CSE225", new Course("CSE215L", "Programming in Java",1,3.0));
+        courseMap.put("CSE225L", new Course("CSE215L", "Programming in Java",1,3.0));
     }
 
     public void createUI() {
@@ -46,6 +49,8 @@ public class CourseRegistration extends JFrame{
         cmbxCourse.addItem("CSE173");
         cmbxCourse.addItem("CSE215");
         cmbxCourse.addItem("CSE215L");
+        cmbxCourse.addItem("CSE225");
+        cmbxCourse.addItem("CSE225L");
 
         cmbxCourse.setSelectedItem(null);
 
@@ -99,6 +104,9 @@ public class CourseRegistration extends JFrame{
         JScrollPane sp = new JScrollPane(table);
         sp.setBounds(20, 150, 465, 150);
 
+        JLabel label4 = new JLabel("Total Credits :");
+        label4.setBounds(350,300,130,30);
+
         this.add(label1);
         this.add(label2);
         this.add(txtID);
@@ -109,15 +117,20 @@ public class CourseRegistration extends JFrame{
         this.add(label3);
         this.add(cmbxCourse2);
         this.add(btnrmv);
+        this.add(label4);
 
         btnAdd.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String course = (String)cmbxCourse.getSelectedItem();
-                double section = Double.parseDouble((String)cmbxCourse2.getSelectedItem());
+                int section = Integer.parseInt((String)cmbxCourse2.getSelectedItem());
                 Course c = courseMap.get(course);
                 c.setSection(section);
                 courseList.add(c);
                 model.addRow(new Object[] {courseList.size(), c.getID(), c.getTitle(), c.getSection(), c.getCredit(), "No"});
+
+                cc = cc + c.getCredit();
+                label4.setText("Total Credits :" +cc);
+
             }
         });
 
