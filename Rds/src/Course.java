@@ -1,11 +1,11 @@
 public class Course {
     protected String ID;
     protected  String Title;
-    protected double Section;
+    protected int Section;
 
     protected double Credit;
 
-    public Course(String ID, String title, double section, double credit) {
+    public Course(String ID, String title, int section, double credit) {
         this.ID = ID;
         Title = title;
         Section = section;
@@ -32,7 +32,7 @@ public class Course {
         return Section;
     }
 
-    public void setSection(double section) {
+    public void setSection(int section) {
         Section = section;
     }
 
