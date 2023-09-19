@@ -1,5 +1,8 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -21,7 +24,7 @@ public class CourseRegistration extends JFrame{
     }
 
     public void createUI() {
-        this.setSize(500, 500);
+        this.setSize(520, 500);
         this.setLayout(null);
 
         JLabel label1 = new JLabel("ID: ");
@@ -66,9 +69,12 @@ public class CourseRegistration extends JFrame{
 
         JButton btnAdd = new JButton("Add");
         JButton btnSave = new JButton("Save");
+        JButton btnrmv = new JButton("Remove");
+
 
         btnAdd.setBounds(250, 60, 70, 30);
         btnSave.setBounds(130, 310, 70, 30);
+        btnrmv.setBounds(220,310,100,30);
 
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("SL");
@@ -76,6 +82,7 @@ public class CourseRegistration extends JFrame{
         model.addColumn("Title");
         model.addColumn("Section");
         model.addColumn("Credit");
+        model.addColumn("Saved?");
 
         JTable table = new JTable(model);
 
@@ -84,12 +91,13 @@ public class CourseRegistration extends JFrame{
 
         table.getColumnModel().getColumn(0).setPreferredWidth(52);
         table.getColumnModel().getColumn(1).setPreferredWidth(80);
-        table.getColumnModel().getColumn(2).setPreferredWidth(100);
+        table.getColumnModel().getColumn(2).setPreferredWidth(125);
         table.getColumnModel().getColumn(3).setPreferredWidth(70);
         table.getColumnModel().getColumn(4).setPreferredWidth(70);
+        table.getColumnModel().getColumn(5).setPreferredWidth(50);
 
         JScrollPane sp = new JScrollPane(table);
-        sp.setBounds(20, 150, 375, 150);
+        sp.setBounds(20, 150, 465, 150);
 
         this.add(label1);
         this.add(label2);
@@ -100,15 +108,56 @@ public class CourseRegistration extends JFrame{
         this.add(btnSave);
         this.add(label3);
         this.add(cmbxCourse2);
+        this.add(btnrmv);
 
         btnAdd.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String course = (String)cmbxCourse.getSelectedItem();
+                double section = Double.parseDouble((String)cmbxCourse2.getSelectedItem());
                 Course c = courseMap.get(course);
+                c.setSection(section);
                 courseList.add(c);
-                model.addRow(new Object[] {courseList.size(), c.getID(), c.getTitle(), c.getSection(), c.getCredit()});
+                model.addRow(new Object[] {courseList.size(), c.getID(), c.getTitle(), c.getSection(), c.getCredit(), "No"});
             }
         });
+
+        btnrmv.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+
+                int index = table.getSelectedRow();
+                courseList.remove(index);
+                model.removeRow(index);
+
+                for (int i=0;i<courseList.size();i++){
+                    model.setValueAt(i+1,i,0);
+                }
+            }
+        });
+
+        btnSave.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+
+                File file= new File("courses.txt");
+                FileWriter fr;
+                try {
+                    fr = new FileWriter(file, false);
+                    fr.write("UserID: " + txtID.getText() + "\n");
+                    for(Course c : courseList){
+                        fr.write(c.getID() + " " + c.getTitle() + " " + c.getSection() + " " + c.getCredit() + "\n");
+                    }
+                    fr.close();
+                    for (int i = 0; i < courseList.size(); i++) {
+                        model.setValueAt("Yes", i, 5);
+                    }
+                }
+                catch(IOException e1){
+                    System.out.println("Error");
+                }
+            }
+        });
+
 
         this.setVisible(true);
     }
